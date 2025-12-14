@@ -6,9 +6,9 @@ export default async function handler(req, res) {
     const { meal } = req.body;
     if (!meal) return res.status(400).json({ error: "Missing 'meal' object in request body" });
 
-    // ✅ Align with your working handlers
-    const base = process.env.FIREBASE_URL.replace(".json", "");
-    const firebaseUrl = `${base}/data/meals.json`;
+    // ✅ Fix: only strip the trailing slash and ".json" from the base
+    const base = process.env.FIREBASE_URL.replace(/\/?\.json$/, "");
+    const firebaseUrl = `${base}/meals.json`;
 
     const r = await fetch(firebaseUrl, {
       method: "POST",
