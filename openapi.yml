@@ -3,7 +3,7 @@ info:
   title: Groceries Write Proxy
   version: 1.0.0
 servers:
-  - url: https://YOUR-VERCEL-APP.vercel.app
+  - url: https://groceries-for-lovers-proxy.vercel.app
 paths:
   /api/update:
     post:
