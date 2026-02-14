@@ -4,7 +4,7 @@ This project exposes serverless API routes that proxy requests to Firebase.
 Two environment variables are required for every route:
 
 - `FIREBASE_URL` – The base Realtime Database URL ending in `.json`
-- `FIREBASE_SERVICE_ACCOUNT_JSON` – A service account JSON (stringified or base64) used to mint short-lived OAuth tokens
+- `FIREBASE_SERVICE_ACCOUNT_JSON` – A service account JSON (stringified or base64) used to mint short-lived OAuth access tokens
 
 ## Local development
 

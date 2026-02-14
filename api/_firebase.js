@@ -67,5 +67,5 @@ export async function buildFirebaseUrl(path = "") {
   if (!url.endsWith(".json")) url = `${url}.json`;
 
   const separator = url.includes("?") ? "&" : "?";
-  return `${url}${separator}auth=${encodeURIComponent(authToken)}`;
+  return `${url}${separator}access_token=${encodeURIComponent(authToken)}`;
 }
