@@ -1,3 +1,5 @@
+import { buildFirebaseUrl } from "./_firebase.js";
+
 export default async function handler(req, res) {
   if (req.method !== "POST")
     return res.status(405).json({ error: "Only POST allowed" });
@@ -8,8 +10,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Missing or invalid 'layout' array" });
 
     // Build Firebase URL for storeLayout node
-    const base = process.env.FIREBASE_URL.replace(/\/?\.json$/, "");
-    const firebaseUrl = `${base}/storeLayout.json`;
+    const firebaseUrl = await buildFirebaseUrl("storeLayout");
 
     // Replace the existing layout
     const r = await fetch(firebaseUrl, {

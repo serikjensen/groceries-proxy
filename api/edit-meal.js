@@ -1,3 +1,5 @@
+import { buildFirebaseUrl } from "./_firebase.js";
+
 export default async function handler(req, res) {
   if (req.method !== "PATCH")
     return res.status(405).json({ error: "Only PATCH allowed" });
@@ -10,8 +12,7 @@ export default async function handler(req, res) {
         .json({ error: "Both 'id' and 'updates' are required" });
 
     // 🔧 Build correct Firebase path
-    const base = process.env.FIREBASE_URL.replace(/\/?\.json$/, "");
-    const firebaseUrl = `${base}/meals/${id}.json`;
+    const firebaseUrl = await buildFirebaseUrl(`meals/${id}`);
 
     const r = await fetch(firebaseUrl, {
       method: "PATCH",

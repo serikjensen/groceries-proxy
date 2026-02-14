@@ -1,9 +1,11 @@
+import { buildFirebaseUrl } from "./_firebase.js";
+
 export default async function handler(req, res) {
   if (req.method !== "GET")
     return res.status(405).json({ error: "Only GET allowed" });
 
   try {
-    const firebaseUrl = process.env.FIREBASE_URL.replace(".json", "/storeLayout.json");
+    const firebaseUrl = await buildFirebaseUrl("storeLayout");
     const r = await fetch(firebaseUrl);
     const data = await r.json();
 

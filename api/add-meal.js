@@ -1,3 +1,5 @@
+import { buildFirebaseUrl } from "./_firebase.js";
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Only POST allowed" });
@@ -12,8 +14,7 @@ export default async function handler(req, res) {
     }
 
     // build the Firebase URL for the specific meal key
-    const base = process.env.FIREBASE_URL.replace(/\/?\.json$/, "");
-    const firebaseUrl = `${base}/meals/${meal.id}.json`;
+    const firebaseUrl = await buildFirebaseUrl(`meals/${meal.id}`);
 
     const r = await fetch(firebaseUrl, {
       method: "PUT", // 🔄 replace or create at this specific key
